@@ -1,0 +1,10 @@
+# 本地生成音频与个人录音（体积大，不入库）
+audio/Day*/
+recordings/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
