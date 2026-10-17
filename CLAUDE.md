@@ -18,6 +18,7 @@ scripts/ - 语料生成、文档校验、本地音频生成 (4文件)
 README.md - 人类入口，快速开始与目录导航
 Makefile - `make corpus` 生成语料库，`make check` 执行文档校验
 .gitignore - 忽略本地音频、录音与 Python 缓存
+.github/workflows/docs-check.yml - GitHub Actions：push/PR 时运行 `make check`
 </config>
 
 <architecture>

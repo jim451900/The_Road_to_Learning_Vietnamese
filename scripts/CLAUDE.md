@@ -13,7 +13,7 @@
 
 ## 依赖与暴露
 - 上游：`../01_发音系统/04_每日任务_Day01-Day15.md` 的结构化标题与词句行。
-- 下游：`make corpus` 调用生成器；`make check` 调用校验器并作为提交前门禁；`make audio` 调用音频生成器。
+- 下游：`make corpus` 调用生成器；`make check` 调用校验器并作为提交前与 GitHub Actions 门禁；`make audio` 调用音频生成器。
 - 约束：修改每日任务的标题结构或词句行格式时，必须同步修改三个脚本。
 
 [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md

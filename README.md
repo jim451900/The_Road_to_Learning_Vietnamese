@@ -85,6 +85,8 @@ make corpus   # 重新生成语料库
 make audio    # 用 macOS 越南语语音 Linh 生成本地兜底音频
 ```
 
+GitHub Actions 在 push 与 PR 时运行同一套 `make check`，防止本地绕过门禁。
+
 当前门禁覆盖：
 
 - 零断链。
