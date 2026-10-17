@@ -93,6 +93,7 @@ GitHub Actions 在 push 与 PR 时运行同一套 `make check`，防止本地绕
 - 零孤岛文件。
 - 每个模块有 `CLAUDE.md`。
 - 每个业务 Markdown 有 `INPUT/OUTPUT/POS/PROTOCOL` 头部。
+- 文档引用的 `S01-01` / `W01-01` 等语料 ID 必须真实存在。
 - Day01-Day15 每天恰好 10 个高频词、5 个实用句、至少 3 个 drill、1 个微场景。
 - `语料库/` 与唯一事实源同步。
 - 单文件不超过 800 行。

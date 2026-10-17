@@ -21,7 +21,10 @@ DAILY = ROOT / "01_发音系统" / "04_每日任务_Day01-Day15.md"
 
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 DAY_HEADING_RE = re.compile(r"^##\s+Day\d+", re.M)
+S_ID_RE = re.compile(r"\bS\d{2}-\d{2}\b")
+W_ID_RE = re.compile(r"\bW\d{2}-\d{2}\b")
 L3_TAGS = ("[INPUT]", "[OUTPUT]", "[POS]", "[PROTOCOL]")
+CORPUS_DIR = ROOT / "语料库"
 
 
 def md_files() -> list[Path]:
@@ -119,6 +122,26 @@ def check_daily() -> list[str]:
     return errors
 
 
+def check_corpus_ids(files: list[Path]) -> list[str]:
+    """Every S/W ID referenced in prose must exist in the generated corpus."""
+    word_table = CORPUS_DIR / "01_词表.md"
+    sentence_table = CORPUS_DIR / "02_句库.md"
+    known = set()
+    known |= set(re.findall(r"^\| (W\d{2}-\d{2}) \|", word_table.read_text(encoding="utf-8"), re.M))
+    known |= set(re.findall(r"^\| (S\d{2}-\d{2}) \|", sentence_table.read_text(encoding="utf-8"), re.M))
+
+    generated = set(CORPUS_DIR.glob("*.md"))
+    errors = []
+    for path in files:
+        if path in generated:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for ref in sorted(set(S_ID_RE.findall(text)) | set(W_ID_RE.findall(text))):
+            if ref not in known:
+                errors.append(f"unknown corpus ID {ref} in {rel(path)}")
+    return errors
+
+
 def check_no_parallel_days(files: list[Path]) -> list[str]:
     errors = []
     for path in files:
@@ -147,6 +170,7 @@ def main() -> int:
     errors += check_l3(files)
     errors += check_orphans(files)
     errors += check_daily()
+    errors += check_corpus_ids(files)
     errors += check_no_parallel_days(files)
     errors += check_file_sizes(files)
     errors += build_corpus.check()

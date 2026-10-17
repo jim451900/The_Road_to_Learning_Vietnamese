@@ -7,7 +7,7 @@
 
 ## 成员清单
 - `build_corpus.py`: 解析唯一事实源 `01_发音系统/04_每日任务_Day01-Day15.md`，生成 `语料库/` 三个数据文件。
-- `check_docs.py`: 校验断链、孤岛、L2/L3 完整性、15 天每日 10 词 5 句、无平行课程、单文件行数、语料库同步。
+- `check_docs.py`: 校验断链、孤岛、L2/L3 完整性、语料库 S/W ID 引用、15 天每日 10 词 5 句、无平行课程、单文件行数、语料库同步。
 - `generate_audio.py`: 用 macOS `say -v Linh` 从每日任务生成 `audio/DayNN/` 兜底音频，文件不入库。
 - `CLAUDE.md`: 本文件。
 
